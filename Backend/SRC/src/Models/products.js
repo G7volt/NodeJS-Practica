@@ -8,9 +8,9 @@ category
 imageUrl
 */
 
-import { shcema, model} from 'mongoose';
+import { Schema, model} from 'mongoose';
 
-const productSchema = new shcema({ 
+const productSchema = new Schema({ 
     name: {
         type: String,
     },
