@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 /*
 name
@@ -13,7 +13,7 @@ branchId
 
 const employeeSchema = new Schema({
     name: {
-         type: String 
+        type: String 
     },
     lastName: { 
         type: String
