@@ -17,5 +17,6 @@ app.use("/api/employees", employeesRouters);
 app.use("/api/reviews", reviewRouters);
 app.use("/api/brands", brandsRouter);
 app.use("/api/admins", adminsRouter);
+app.use("/api/customers")
 
 export default app; 

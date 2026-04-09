@@ -8,5 +8,8 @@ export const config = {
     }, 
     server: {
         port: process.env.PORT
+    },
+    JWT:{
+        secret: process.env.JWT_SECRET_KEY
     }
 }
