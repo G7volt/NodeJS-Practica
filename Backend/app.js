@@ -5,8 +5,13 @@ import employeesRouters from "./SRC/src/routers/employees.js";
 import reviewRouters from "./SRC/src/routers/review.js";
 import brandsRouter from "./SRC/src/routers/brands.js";
 import adminsRouter from "./SRC/src/routers/admins.js";
+import registerCustomer from "./SRC/src/routers/registerCustomer.js";
+import cookieParser from "cookie-parser";
+import customerRouter from "./SRC/src/routers/customers.js";
 
 const app = express();
+
+app.use(cookieParser());
 
 //Que acepte el json desde postman
 app.use(express.json());
@@ -17,6 +22,7 @@ app.use("/api/employees", employeesRouters);
 app.use("/api/reviews", reviewRouters);
 app.use("/api/brands", brandsRouter);
 app.use("/api/admins", adminsRouter);
-app.use("/api/customers")
+app.use("/api/customers", customerRouter);
+app.use("/api/registerCustomers", registerCustomer);
 
 export default app; 

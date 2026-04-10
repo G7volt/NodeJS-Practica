@@ -1,11 +1,10 @@
-import customers from "../Models/customers.js";
 import customerModel from "../Models/customers.js";
 
 const customerController = {};
 
 customerController.getCustomers = async (req, res) => {
     try {
-        const customers = await customersModel.find();
+        const customers = await customerModel.find();
         return res.status(200).json(customers)
     } catch (error) {
         console.log("error " + error)
