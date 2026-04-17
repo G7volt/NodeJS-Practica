@@ -69,7 +69,7 @@ registerCustomer.register = async (req, res) => {
 
     //2- Quien recibira el correo?
     const mailOptions = {
-        from: config.email.userEmail,
+        from: config.email.user_email,
         to: email,
         subject: "Verificacion de cuenta",
         text: "Para verificar su cuenta, utiliza el codigo " + verificationCode + " Expirara en 15 minutos"
