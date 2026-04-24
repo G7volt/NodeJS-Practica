@@ -31,3 +31,5 @@ const HTMLRecoveryEmail = (code, email) => {
         `
     )
 }
+
+export default HTMLRecoveryEmail;
