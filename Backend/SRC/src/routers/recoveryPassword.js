@@ -8,6 +8,6 @@ router.route("/requestCode").post(recoveryPassword.requestCode);
 
 router.route("/verifyCode").post(recoveryPassword.verifyCode);
 
-router.route("/newPassword").post(recoveryPassword.newPassword);
+router.route("/newPassword").post(recoveryPassword.newPassword);0
 
 export default router;
