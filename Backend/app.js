@@ -12,6 +12,7 @@ import loginCustomer from "./SRC/src/routers/loginCustomer.js";
 import logOut from "./SRC/src/routers/logOut.js";
 import recoveryPassword from "./SRC/src/routers/recoveryPassword.js"
 import cors from "cors";
+import limiter from "./SRC/src/middlewares/rateLimiter.js"
 
 const app = express();
 app.use(cors({
@@ -19,6 +20,8 @@ app.use(cors({
     //permitir el envio de cookies y credenciales
     credentials: true
 }))
+
+app.use(limiter);
 
 app.use(cookieParser());
 
