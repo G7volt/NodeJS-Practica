@@ -56,9 +56,9 @@ recoveryPassword.requestCode = async (req, res) => {
         })
 
         const mailOptions = {
-            from: config.email-user_email, 
+            from: config.email.user_email, 
             to: email, 
-            subject: "cogio de recuperacion de contraseña",
+            subject: "codigo de recuperacion de contraseña",
             body: "El codigo vence en 15 minutos",
             html:  HTMLRecoveryEmail(randomCode),
         }; 
