@@ -12,7 +12,7 @@ import loginCustomer from "./SRC/src/routers/loginCustomer.js";
 import logOut from "./SRC/src/routers/logOut.js";
 import recoveryPassword from "./SRC/src/routers/recoveryPassword.js"
 import cartRouter from "./SRC/src/routers/cart.js"
-import cors from "cors";
+import cors from "cors"
 import limiter from "./SRC/src/middlewares/rateLimiter.js"
 import wompiRoutes from "./SRC/src/routers/wompiToken.js"
 import { validateAuthCookie } from "./SRC/src/middlewares/authMiddleWare.js";
