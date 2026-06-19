@@ -1,6 +1,7 @@
 import express from "express";
 import productsController from "../controllers/productsController.js";
 import { get } from "mongoose";
+import validateAuthCookie from "../middlewares/authMiddleWare.js";
 
 //Router() nos ayudara a colocar los metodos
 //que tendra el endpoint

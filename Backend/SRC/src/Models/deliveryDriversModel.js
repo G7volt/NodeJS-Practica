@@ -1,4 +1,4 @@
-import {Schema, mdoel} from "mongoose";
+import {Schema, model} from "mongoose";
 
 const deliveryDriverSchema = new Schema({
     name: { type: String},
@@ -18,3 +18,4 @@ const deliveryDriverSchema = new Schema({
     timestamps: true,
     strict: false
 });
+export default model("DeliveryDriver", deliveryDriverSchema);

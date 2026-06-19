@@ -12,6 +12,7 @@ import loginCustomer from "./SRC/src/routers/loginCustomer.js";
 import logOut from "./SRC/src/routers/logOut.js";
 import recoveryPassword from "./SRC/src/routers/recoveryPassword.js"
 import cartRouter from "./SRC/src/routers/cart.js"
+import deliveryDriverRoute from "./SRC/src/routers/deliveryDriverRoutes.js";
 import cors from "cors"
 import limiter from "./SRC/src/middlewares/rateLimiter.js"
 import wompiRoutes from "./SRC/src/routers/wompiToken.js"
@@ -45,7 +46,7 @@ app.use("/api/logOut", logOut);
 app.use("/api/recoveryPassword", recoveryPassword);
 app.use("/api/cart", validateAuthCookie(["admin", "customer"]), cartRouter);
 app.use("/api/wompi", wompiRoutes)
-app.use("/api/deliveryDrivers", )
+app.use("/api/deliveryDrivers", deliveryDriverRoute);
 
 
 export default app; 
