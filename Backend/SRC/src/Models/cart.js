@@ -7,22 +7,22 @@
     },
     total,
     status
-
 Usando localStorage
 */
-import {Schema, model} from "mongoose";
+import mongoose, {Schema, model} from "mongoose";
+import customers from "./customers.js";
+import products from "./products.js";
 
 const cartSchema = new Schema({
     customerId:{
-        type: mongoose.types.ObjectId,
-        ref: "Customers"
-
+        type: mongoose.Schema.Types.ObjectId,
+        ref: customers
     },
     products: [
         {
             productId:{
-                type: mongoose.types.ObjectId,
-                ref: "Product"
+                type: mongoose.Schema.Types.ObjectId,
+                ref: products
             },
             quantity: {
                 type: Number
@@ -40,7 +40,7 @@ const cartSchema = new Schema({
     }
 }, {
     timestamps: true,
-    strict: false
+    new: true
 })
 
 export default model("cart", cartSchema)

@@ -11,9 +11,12 @@ import customerRouter from "./SRC/src/routers/customers.js";
 import loginCustomer from "./SRC/src/routers/loginCustomer.js";
 import logOut from "./SRC/src/routers/logOut.js";
 import recoveryPassword from "./SRC/src/routers/recoveryPassword.js"
+import cartRouter from "./SRC/src/routers/cart.js"
 import cors from "cors";
 import limiter from "./SRC/src/middlewares/rateLimiter.js"
 import wompiRoutes from "./SRC/src/routers/wompiToken.js"
+import { validateAuthCookie } from "./SRC/src/middlewares/authMiddleWare.js";
+
 
 const app = express();
 app.use(cors({
@@ -31,17 +34,18 @@ app.use(express.json());
 
 app.use("/api/products", productsRouters);
 app.use("/api/branches", branchesRouters);
-app.use("/api/employees", employeesRouters);
+app.use("/api/employees", validateAuthCookie(["admin"]), employeesRouters);
 app.use("/api/reviews", reviewRouters);
 app.use("/api/brands", brandsRouter);
-app.use("/api/admins", adminsRouter);
+app.use("/api/admins", validateAuthCookie(["admin"]), adminsRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/registerCustomers", registerCustomer);
-app.use("/api/loginCustomers", loginCustomer);
+app.use("/api/loginCustomers", validateAuthCookie(["customer"]), loginCustomer);
 app.use("/api/logOut", logOut);
 app.use("/api/recoveryPassword", recoveryPassword);
-//app.use("/api/cart", )
+app.use("/api/cart", validateAuthCookie(["admin", "customer"]), cartRouter);
 app.use("/api/wompi", wompiRoutes)
+app.use("/api/deliveryDrivers", )
 
 
 export default app; 

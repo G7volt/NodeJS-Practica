@@ -7,16 +7,20 @@ import { get } from "mongoose";
 const router = express.Router();
 
 router.route("/")
-.get(productsController.getProducts)
+.get(validateAuthCookie(["customer"]), productsController.getProducts)
 .post(productsController.insertProducts)
 
-router.route("/searchByName").post(productsController.getProductByName);
+router.route("/searchByName")
+.post(productsController.getProductByName);
 
-router.route("/low-stock").get(productsController.getLowStock);
+router.route("/low-stock")
+.get(productsController.getLowStock);
 
-router.route("/price-range").get(productsController.getProductsByPriceRange);
+router.route("/price-range")
+.get(validateAuthCookie(["customer"]), productsController.getProductsByPriceRange);
 
-router.route("/count").get(productsController.countProducts)
+router.route("/count")
+.get(productsController.countProducts)
 
 router.route("/:id")
 .get(productsController.getProductById)

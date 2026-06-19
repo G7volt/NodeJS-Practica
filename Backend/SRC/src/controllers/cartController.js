@@ -1,9 +1,9 @@
 import cartModel from "../Models/cart.js";
 import productsModel from "../Models/products.js"
 
-const cartControler = {};
+const cartController = {};
 
-cartControler.getAllCarts = async (req, res) => {
+cartController.getAllCarts = async (req, res) => {
 
     try {
 
@@ -73,7 +73,7 @@ cartController.insertNewCart = async (req, res) => {
             customerId, 
             products: newProducts,
             total, 
-            status
+            status: "Active"
         })
 
         await newCart.save()
@@ -84,12 +84,70 @@ cartController.insertNewCart = async (req, res) => {
     }
 }
 
-cartControler.updateCart = async (req, res) => {
+cartController.updateCart = async (req, res) => {
 
     try {
-        
+        const {customerId, products, status} = req.body;
+
+        let total = 0;
+        let newProducts = [];
+
+        for( let s = 0; s < products.length; s++ ) {
+            //Buscamos el producto en la BD
+            const product = await ProductModel.findById(products[s].productId);
+
+            if(!product){
+                return res.status(400).json({message: `Product with not found`, id: products[s].productId});
+            }
+
+            let subtotal;
+
+            if(products[s].gratis){
+                subtotal = 0;
+            }else{
+                subtotal = product.price * products[s].quantity;
+            }
+
+            total += subtotal;
+
+            newProducts.push({
+                productId: products[s].productId,
+                quantity: products[s].quantity,
+                subtotal
+            });
+        }
+
+        const updateCart = await CarModel.findByIdAndUpdate(req.params.id, {
+            customerId,
+            products: newProducts,
+            total,
+            status: "Active"
+        },
+        {new: true});
+
+        if(!updateCart){
+            return res.status(404).json({message: "Cart not found"});
+        }
+
+        res.status(200).json({ message: "Cart updated successfully" });
     } catch (error) {
         console.log("error" + error)
         return res.status(500).json({message: "Internal server error"})
     }
 }
+
+cartController.deleteCart = async (req, res) => {
+    try {
+        const deletedCart = await CarModel.findByIdAndDelete(req.params.id);
+
+        if(!deletedCart){
+            return res.status(404).json({message: "Cart not found"});
+        }
+        res.status(200).json({ message: "Cart deleted successfully" });
+    } catch (error) {
+        console.log("Error: " + error);
+        return res.status(500).json({message: "Internal server error"});
+    }
+}
+
+export default cartController;
