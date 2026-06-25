@@ -16,6 +16,7 @@ import deliveryDriverRoute from "./SRC/src/routers/deliveryDriverRoutes.js";
 import cors from "cors"
 import limiter from "./SRC/src/middlewares/rateLimiter.js"
 import wompiRoutes from "./SRC/src/routers/wompiToken.js"
+import eventRouter from "./SRC/src/routers/events.js"
 import { validateAuthCookie } from "./SRC/src/middlewares/authMiddleWare.js";
 
 
@@ -47,6 +48,6 @@ app.use("/api/recoveryPassword", recoveryPassword);
 app.use("/api/cart", validateAuthCookie(["admin", "customer"]), cartRouter);
 app.use("/api/wompi", wompiRoutes)
 app.use("/api/deliveryDrivers", deliveryDriverRoute);
-
+app.use("/api/events", eventRouter);
 
 export default app; 
